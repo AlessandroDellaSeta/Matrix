@@ -24,10 +24,12 @@ public:
         return m[i*cols + j];
     }
     friend ostream& operator <<(ostream& s, const Matrix& mat){
-        for (int i = 0; i < mat.rows; i++){
+        for (int i = 0; i < mat.rows; i++) {
             for (int j = 0; j < mat.cols; j++) {
-               s << mat.m[i];
+                s << mat.m[i];
             }
+        }
+    }
 };
 
 
