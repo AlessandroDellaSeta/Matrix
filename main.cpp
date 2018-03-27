@@ -5,6 +5,15 @@ private:
     double *m;
     int rows, cols;
 public:
+    Matrix(int rows, int cols) : rows(rows) , cols(cols) , m(new double[rows][cols]){
+        for(int i=0; i<rows*cols;i++)
+            m[i] = 0.0;
+    }
+    Matrix(int rows, int cols,int v) : rows(rows) , cols(cols) , m(new double[rows][cols]){
+        for(int i=0; i<rows*cols;i++)
+            m[i] = v;
+    }
+
     Matrix(const Matrix &orig) : rows(orig.rows), cols(orig.cols), m(new double[rows][cols]) {
         for (int i = 0; i < rows; i++){
             for (int j = 0; j < cols; j++) {
