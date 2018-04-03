@@ -20,6 +20,8 @@ public:
             m[i] = orig.m[i];
         }
     }
+    ~Matrix(){
+        delete [] m;
 
     /*
     0 1 2 3
@@ -41,7 +43,23 @@ public:
         }
         return s;
     }
-
+        Matrix& operator *(const Matrix&r,const Matrix&t) const {
+            Matrix ans;
+            ans.m=new double[ans.rows][ans.cols];
+            if (r.cols != t.rows) {
+                return ans;
+            }
+            else{
+                for(int i=0;i<r.rows;++i){
+                    for (int j=0;j<t.cols;++j)
+                    {
+                        for(int k=0;k<r.cols;++k){
+                            ans.m[rows][cols]+=r.m[i][k]*t.m[k][j];
+                        }
+                    }
+                }
+            }
+        }
 };
 
 
