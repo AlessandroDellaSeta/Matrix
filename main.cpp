@@ -5,23 +5,23 @@ private:
     double *m;
     int rows, cols;
 public:
-    Matrix(int rows, int cols) : rows(rows) , cols(cols) , m(new double[rows][cols]){
-        for(int i=0; i<rows*cols;i++)
+    Matrix(int rows=0 , int cols=0): rows(rows) , cols(cols) , m(new double[rows*cols]) {
+        for (int i = 0; i < rows*cols; i++)
             m[i] = 0.0;
     }
-    Matrix(int rows, int cols,int v) : rows(rows) , cols(cols) , m(new double[rows][cols]){
-        for(int i=0; i<rows*cols;i++)
-            m[i] = v;
+
+    Matrix(int rows , int cols, double value): rows(rows) , cols(cols) , m(new double[rows*cols]) { // "abc"
+        for (int i = 0; i < rows*cols; i++)
+            m[i] = value;
     }
 
-    Matrix(const Matrix &orig) : rows(orig.rows), cols(orig.cols), m(new double[rows][cols]) {
-        for (int i = 0; i < rows; i++){
-            for (int j = 0; j < cols; j++) {
-                m[i] = orig.m[i];
-            }
+    Matrix(const Matrix &orig) : rows(orig.rows), cols(orig.cols), m(new double[rows*cols]) {
+        for (int i = 0; i < rows*cols; i++){
+            m[i] = orig.m[i];
         }
     }
-/*
+
+    /*
     0 1 2 3
 4 5 6 7
     8 9 10 11
@@ -35,10 +35,13 @@ public:
     friend ostream& operator <<(ostream& s, const Matrix& mat){
         for (int i = 0; i < mat.rows; i++) {
             for (int j = 0; j < mat.cols; j++) {
-                s << mat.m[i];
+                s << mat(i,j) << " ";
             }
+            cout << '\n';
         }
+        return s;
     }
+
 };
 
 
@@ -64,7 +67,7 @@ int main() {
     cout << a;
 
     Matrix b(3,4,1.5); // set all values to 1.5
-    Matrix c = a + b;
+ //   Matrix c = a + b;
     Matrix d(4,3,2.5);
-    Matrix e = b * d; // matrix  mult.
+ //   Matrix e = b * d; // matrix  mult.
 }
